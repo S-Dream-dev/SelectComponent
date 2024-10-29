@@ -1,0 +1,77 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*@keyframes rainbow {
+  0% { background-color: #ff9a9e; }
+  14% { background-color: #fad0c4; }
+  28% { background-color: #fbc2eb; }
+  42% { background-color: #fae3d9; }
+  57% { background-color: #bbded6; }
+  71% { background-color: #61c0bf; }
+  85% { background-color: #6a82fb; }
+  100% { background-color: #ff9a9e; }
+}*/
+
+body {
+  animation: rainbow 10s ease infinite; /* ตั้งค่าให้แอนิเมชันดำเนินการ 10 วินาทีและวนซ้ำ */
+}
+
+/* ปกติแสดงลูกศรและมีสีกรอบเป็น #3b50ce */
+select {
+  appearance: none; /* ปิดลักษณะการแสดงผล default */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E"); /* แสดงลูกศรแบบ SVG */
+  background-repeat: no-repeat; /* ไม่ให้ซ้ำ */
+  background-position: right 0.75rem center; /* ตำแหน่งลูกศรด้านขวา */
+  padding-right: 2.5rem; /* เพิ่มพื้นที่ทางขวาเพื่อให้ลูกศรไม่ทับ text */
+  border: 2px solid #3b50ce !important; /* บังคับใช้สีกรอบกล่อง select เป็นสี #3b50ce */
+  border-radius: 0.375rem; /* กำหนดขอบให้มีความโค้งมน */
+}
+
+/* เมื่อ select อยู่ในสถานะโฟกัส ให้ใช้สี #4e6cef */
+select:focus {
+  outline: none; /* ปิดการแสดงผล outline ของเบราว์เซอร์ */
+  border: 2px solid #4e6cef !important; /* เปลี่ยนกรอบให้เป็นสี #3b50ce เมื่ออยู่ในสถานะโฟกัส */
+}
+
+/* เมื่อเลือกค่าแล้ว ซ่อนลูกศร */
+select:not([value=""]) {
+  background-image: none; /* ซ่อนลูกศร */
+}
+
+
