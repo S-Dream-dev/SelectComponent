@@ -53,6 +53,8 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, o
         ))}
       </select>
 
+      {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+
       {/* ปุ่มเคลียร์ที่จะแสดงเมื่อมีการเลือกค่า */}
       {selectedValue && (
           <button
