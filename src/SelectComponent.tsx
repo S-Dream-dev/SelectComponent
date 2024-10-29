@@ -14,7 +14,6 @@ interface SelectComponentProps {
 // ประกาศคอมโพเนนต์ SelectComponent
 const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, onChange }) => { // ตอนนี้ id มีค่าเท่ากับ "select-1"
   const [selectedValue, setSelectedValue] = useState(''); //ค่าเริ่มต้นเป็น string ว่าง
-
   const [error, setError] = useState<string | undefined>(undefined); // สถานะสำหรับข้อความข้อผิดพลาด
 
 //ฟังก์ชัน handleSelectChange รับค่าที่เลือก (value) มาอัปเดตสถานะ selectedValue และเรียกฟังก์ชัน onChange ที่ได้รับผ่าน props เพื่อส่งค่ากลับไป
@@ -22,12 +21,12 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, o
     setSelectedValue(value); // อัปเดต selectedValue ด้วยค่าที่เลือก
     onChange(value); // เรียก onChange เพื่อส่งค่าที่เลือกกลับไปให้คอมโพเนนต์หลัก
 
-    if (!value){
+    /*if (!value){
       setError('กรุณาเลือกตัวเลือก');
     }
     else{
       setError(undefined); // ลบข้อความข้อผิดพลาด
-    }
+    }*/
   };
 
   // ฟังก์ชันสำหรับเคลียร์ค่าที่เลือก
@@ -53,7 +52,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, o
         ))}
       </select>
 
-      {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+      {/*error && <p className="text-sm text-red-600 mt-2">{error}</p>*/}
 
       {/* ปุ่มเคลียร์ที่จะแสดงเมื่อมีการเลือกค่า */}
       {selectedValue && (

@@ -32,7 +32,7 @@ const App: React.FC = () => {
         onChange={handleSelectChange}
       />
 
-      <button className="mt-4 absolute transform -translate-y-1/2 text-gray-500 hover:text-red-500" type = "submit">
+      <button className="mt-4 absolute transform -translate-y-1/2 text-gray-500 hover:text-red-500">
         submit
       </button>
 
@@ -44,3 +44,7 @@ const App: React.FC = () => {
 
 export default App;
 //เอาformมาครอบ แล้วให้varidate ตัวvalue ในตัวเลือกหากไม่มีข้อมูลให้เกิด error ทำแล้วให้อัพขึ้นgit
+
+//ทำให้ในcomponent ไม่มี state แต่สามารถเรียกใช้ได้เลย
+//เช็คการ varidate ตัว value แจ้งเตือน 'กรุณาเลือกตัวเลือก' ไม่ขึ้น
+//ปุ่ม submit ยังใช้ไม่ได้ มีสอนในyoutube
