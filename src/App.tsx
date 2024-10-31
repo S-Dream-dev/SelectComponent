@@ -15,12 +15,12 @@ const App: React.FC = () => {
 
   const handleSelectChange = (value: string) => {                                                   //ใช้ในการอัปเดตสถานะ form โดยใช้ค่า value มาอัปเดตฟิลด์ name
 
-    if(!value){
+    /*if(!value){
       setError('กรุณาเลือกตัวเลือก');
     } 
     else {
       setError(undefined);
-    }
+    }*/
     setForm({ ...form, name: value });                                                              // ใช้ค่าเดิมของ form แล้วแทนที่ฟิลด์ name ด้วยค่าใหม่
   };
 
@@ -37,7 +37,7 @@ const App: React.FC = () => {
     <div className="flex flex-col items-center justify-center h-screen">
       
       <form onSubmit={handleSubmit} noValidate>
-      {JSON.stringify(form)} {/* แสดงข้อมูล form เป็น JSON string บนหน้าเว็บ */}
+      {/*{JSON.stringify(form)} {/* แสดงข้อมูล form เป็น JSON string บนหน้าเว็บ */}
       <SelectComponent
         id="select-1"
         label="Label"

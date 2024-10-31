@@ -37,7 +37,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, o
       <select
         id={id}
         required={true}
-        className="appearance-none py-3 px-4 block w-full border rounded-lg text-sm border-gray-300 focus:border-gray-500"
+        className={`appearance-none py-3 px-4 block w-full rounded-lg text-sm border ${error ? '!border-red-500' : 'border-color: transparent'} focus:outline-none`}
         value={value}                                                                               //ใช้การเรียกValue
         onChange={(e) => handleSelectChange(e.target.value)}                                         //เรียก handleSelectChange พร้อมส่งค่าจาก e.target.value
       >
