@@ -1,6 +1,9 @@
+// App.tsx
 import React, { useState } from 'react';
-import './App.css'; // นำเข้าไฟล์ CSS
-import SelectComponent from './SelectComponent'; // นำเข้า SelectComponent
+import './App.css';
+import InputRadio from './InputRadio';
+import InputTextComponent from './InputTextComponent';
+import SelectComponent from './SelectComponent';
 
 const App: React.FC = () => {
   // ตัวเลือกสำหรับ dropdown
@@ -9,57 +12,95 @@ const App: React.FC = () => {
     { value: '2', label: 'ตัวเลือก 2' },
     { value: '3', label: 'ตัวเลือก 3' },
   ];
- //สร้างสถานะ form โดยมีฟิลด์ name และ address โดยค่าเริ่มต้นเป็นสตริงว่าง
-  const [form, setForm] = useState({ name: '', address: '' });                                      //โจทย์ให้แสดง value ใน name
-  const [error, setError] = useState<string | undefined>(undefined);
+  
+  const [form, setForm] = useState({ name: '', address: '', firstname: '', lastname: '', email: '' ,gender:''});
+  const [error, setError] = useState<{ [key: string]: string | undefined }>({});
 
-  const handleSelectChange = (value: string) => {                                                   //ใช้ในการอัปเดตสถานะ form โดยใช้ค่า value มาอัปเดตฟิลด์ name
-
-    /*if(!value){
-      setError('กรุณาเลือกตัวเลือก');
-    } 
-    else {
-      setError(undefined);
-    }*/
-    setForm({ ...form, name: value });                                                              // ใช้ค่าเดิมของ form แล้วแทนที่ฟิลด์ name ด้วยค่าใหม่
+  const handleInputChange = (field: string, value: string) => {
+    setForm({ ...form, [field]: value });
+    setError({ ...error, [field]: undefined });
   };
 
-  const handleSubmit = (event : React.FormEvent) => {
-    event.preventDefault();                                                                         //ป้องกันไม่ให้มีการส่งแบบฟอร์ม
-     if (!form.name){
-      setError('กรุณาเลือกตัวเลือก'); 
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const newErrors: { [key: string]: string } = {};
+    if (!form.gender) newErrors.gender = 'กรุณาเลือกเพศ';
+    if (!form.name) newErrors.name = 'กรุณาเลือก';
+    if (!form.firstname) newErrors.firstname = 'กรุณากรอกชื่อ';
+    if (!form.lastname) newErrors.lastname = 'กรุณากรอกนามสกุล';
+    if (!form.email) {
+      newErrors.email = 'กรุณากรอกอีเมล';
+    } else if (!form.email.includes('@')) {
+      newErrors.email = 'อีเมลต้องมี @';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setError(newErrors);
       return;
-     }
-     console.log('Submitted Form : ',form);
+    }
+
+    console.log('Submitted Form:', form);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      
       <form onSubmit={handleSubmit} noValidate>
-      {/*{JSON.stringify(form)} {/* แสดงข้อมูล form เป็น JSON string บนหน้าเว็บ */}
-      <SelectComponent
-        id="select-1"
-        label="Label"
-        options={options}
-        onChange={handleSelectChange}
-        value={form?.name}
-        error={error}
-      />
+        <InputTextComponent
+          id = "firstname"
+          label = "ชื่อ"
+          value = {form.firstname}
+          onChange = {(value) => handleInputChange('firstname', value)}
+          error = {error.firstname}
+        />
+        <InputTextComponent
+          id = "lastname"
+          label = "นามสกุล"
+          value = {form.lastname}
+          onChange = {(value) => handleInputChange('lastname', value)}
+          error = {error.lastname}
+        />
+        <InputTextComponent
+          id = "email"
+          label = "อีเมล"
+          value = {form.email}
+          onChange = {(value) => handleInputChange('email', value)}
+          error = {error.email}
+        />
 
-      <button className="mt-4 absolute transform -translate-y-1/2 text-gray-500 hover:text-red-500">
-        submit
-      </button>
+        <SelectComponent
+          id = "select-1"
+          label = "กรุณาเลือก"
+          options = {options}
+          onChange = {(value) => handleInputChange('name', value)}
+          value = {form.name}
+          error = {error.name}
+        />
 
+        <InputRadio
+          type = "radio"
+          name = "gender"
+          id ="male"
+          value = {form.gender}
+          label = "กรุณาเลือก"
+          error = {error.gender}
+        />male
+
+        <InputRadio
+          type = "radio"
+          name = "gender"
+          value = {form.gender}
+        />female
+
+        <button
+          type="submit"
+          className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        >
+          submit
+        </button>
       </form>
     </div>
-    
   );
 };
 
 export default App;
-//เอาformมาครอบ แล้วให้varidate ตัวvalue ในตัวเลือกหากไม่มีข้อมูลให้เกิด error ทำแล้วให้อัพขึ้นgit
-
-//ทำให้ในcomponent ไม่มี state แต่สามารถเรียกใช้ได้เลย
-//เช็คการ varidate ตัว value แจ้งเตือน 'กรุณาเลือกตัวเลือก' ไม่ขึ้น
-//ปุ่ม submit ยังใช้ไม่ได้ มีสอนในyoutube

@@ -53,11 +53,9 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ id, label, options, o
       {value && (
           <button
             type="button"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500"
+            className="absolute inset-y-0 right-1.5 translate-y-3 text-gray-500 hover:text-red-500"
             onClick={clearSelection}
-          >
-            Clear x {/* ไอคอนหรือสัญลักษณ์ที่แสดงแทนปุ่มเคลียร์ */}
-          </button>
+          >Clear</button> /* ไอคอนหรือสัญลักษณ์ที่แสดงแทนปุ่มเคลียร์ */
         )}
 
     </div>
